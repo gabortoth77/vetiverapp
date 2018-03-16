@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
             //    Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
             //            .setAction("Action", null).show();
                 new SendPostRequest(getApplicationContext()).execute(searchText.getText().toString());
-
-
             }
         });
     }
@@ -74,10 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
 
     public class SendPostRequest extends AsyncTask<String, Void, String> {
         Context context;
@@ -151,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             Intent intent = new Intent(context, ResultList.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("data", result);
             context.startActivity(intent);
         }
@@ -180,5 +175,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return result.toString();
     }
-
 }
